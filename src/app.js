@@ -7,7 +7,7 @@ const http = require('http').Server(app);
 //para generar una comunicacion vamos a trabajar con socket io
 
 const io = require('socket.io')(http);
-
+app.set('port', process.env.PORT || 3000);
 app.use(require ('./routes/stream.routes'));
 
 //donde vamos a cargar los html con los que vamos a trabjar 
