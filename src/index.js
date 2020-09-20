@@ -1,4 +1,4 @@
-const http = require('./app')
+const http = require('http')
 
 const express = require('express')
 const app = express()
