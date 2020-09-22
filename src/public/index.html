@@ -15,54 +15,30 @@
     <canvas id="preview"></canvas>
     <div class="status"></div>
 
+    <h1>Emision en directo</h1>
+
+    <video src="" id="video2" style="width: 800px; height: 600px;" autoplay="true"></video>
+    <canvas id="preview2"></canvas>
+    <div class="status2"></div>
+
+    <script src="./js/index.js"></script>
+
+    <img id="play" src="">
+
+
     <script>
 
-
-
-        var canvas = document.querySelector('#preview');
-        var context = canvas.getContext('2d')
-        var btn = document.querySelector('#btn')
-        canvas.style.display = "none";
-
-        canvas.width = 512;
-        canvas.height = 384;
-
-        context.width = canvas.width;
-        context.height = canvas.height;
-
-        var video = document.querySelector('#video')
         var socket = io();
 
-        function publicarMensaje(msg){
-            document.querySelector('.status').innerText = msg;
-        }
-
-        function loadCamara(stream){
-            video.srcObject = stream;
-            publicarMensaje('camara funcionando')
-        }
-
-        function errorCamara(){
-            publicarMensaje('camara ha fallado')
-        }
-
-        function verVideo(video, context){
-            context.drawImage(video, 0, 0, context.width, context.height)
-            socket.emit('stream', canvas.toDataURL('image/webp'))
-        }
-
-        btn.addEventListener('click', () =>{
-            navigator.getUserMedia = (navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msgGetUserMedia)
-
-            if (navigator.getUserMedia){
-                navigator.getUserMedia({video:true}, loadCamara, errorCamara)
-            }
-
-            var intervalo = setInterval(()=>{
-                verVideo(video, context)
-            },500)
+        socket.on('stream', (image) =>{
+            let img = document.getElementById('play')
+            img.src = image
         })
+
+
     </script>
+
+
 
 </body>
 </html>
