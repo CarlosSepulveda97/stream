@@ -5,38 +5,40 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Emitir el video a visualizar</title>
     <script src="/socket.io/socket.io.js"></script>
+    <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-    <h1>Emision en directo</h1>
-    <button id="btn">
-        Emitir
-    </button>
-    <video src="" id="video" style="width: 800px; height: 600px;" autoplay="true"></video>
+    
+
+    <section class="container">
+        <img id="play" src="">
+    </section>
+
+    <section class="container--controles">
+    <section class="controles">
+        <button id="btn" class="btn--controles">
+            <img src="https://img.icons8.com/cute-clipart/64/000000/video-call.png"/>
+        </button>
+        <button id="btn2" class="btn--controles">
+            <img src="https://img.icons8.com/cute-clipart/64/000000/block-microphone.png"/>
+        </button>
+        <button id="btn3" class="btn--controles">
+            <img src="https://img.icons8.com/cute-clipart/64/000000/shutdown.png"/>
+        </button>
+    </section>
+
+    
+    <video class="preview" src="" id="video" autoplay="true"></video>
     <canvas id="preview"></canvas>
-    <div class="status"></div>
-
-    <h1>Emision en directo</h1>
-
-    <video src="" id="video2" style="width: 800px; height: 600px;" autoplay="true"></video>
-    <canvas id="preview2"></canvas>
-    <div class="status2"></div>
+    
 
     <script src="./js/index.js"></script>
 
-    <img id="play" src="">
+    
+    
 
 
-    <script>
-
-        var socket = io();
-
-        socket.on('stream', (image) =>{
-            let img = document.getElementById('play')
-            img.src = image
-        })
-
-
-    </script>
 
 
 

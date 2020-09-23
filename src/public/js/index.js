@@ -22,7 +22,7 @@ var socket = io();
 //-------------------scripts----------------------
 //--------------------------------------------
 function publicarMensaje(msg){
-    document.querySelector('.status').innerText = msg;
+    //document.querySelector('.status').innerText = msg;
 }
 
 function loadCamara(stream){
@@ -43,6 +43,10 @@ function verVideo(vid, con){
     socket.emit('stream', canvas.toDataURL('image/webp'))
 }
 
+socket.on('stream', (image) =>{
+    let img = document.getElementById('play')
+    img.src = image
+})
 
 
 //--------------------------------------------
